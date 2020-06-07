@@ -15,11 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/products');
 });
-Route::get('/products', function () {
-    return view('shop.products');
+Route::namespace('Shop')->group(function (){
+    Route::get('/products', 'ProductsController@showProducts')->name('showProducts');
+    Route::get('/product', 'ProductController@showProduct')->name('showProduct');
 });
-Route::get('/product', function () {
-    return view('shop.product');
-});
+
 
 
