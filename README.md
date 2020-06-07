@@ -1,3 +1,7 @@
+<h3>Тестовый задание для ООО"Диол"</h3>
+
+<p>Для создания таблицы и заполнения ее тестовыми данными запустите в консоли: php artisan migrate --seed</p>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
