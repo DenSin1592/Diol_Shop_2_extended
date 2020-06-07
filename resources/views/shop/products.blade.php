@@ -13,11 +13,11 @@
             @foreach($products as $product)
             <div class="mb-4 shadow-sm .col-5us">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal"><a href="/product">{{$product->title}}</a></h4>
+                    <h4 class="my-0 font-weight-normal"><a href="{{route('product', $product->id )}}">{{$product->title}}</a></h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">${{--{{$product->price}}--}}</h1>
-                    <ul class="list-unstyled mt-3 mb-4" style="background-image: url('{{$product->img}}');">
+                    <h1 class="card-title pricing-card-title">${{$product->price}}</h1>
+                    <ul class="list-unstyled mt-3 mb-4" style="background-image: url('{{asset($product->img)}}');">
                         @if($product->availability)
                             <li><h4 class="availability">В наличии</h4></li>
                         @else

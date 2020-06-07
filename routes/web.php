@@ -16,9 +16,9 @@ Route::get('/', function () {
     return redirect('/products');
 });
 Route::namespace('Shop')->group(function (){
-    Route::get('/products', 'ProductsController@showProducts')->name('showProducts');
-    Route::get('/product', 'ProductController@showProduct')->name('showProduct');
+    Route::get('/products', 'ProductsController@showProducts')->name('products');
+    Route::get('/product/{id}', 'ProductController@showProduct')->name('product');
 });
 
-
+Route::fallback('Shop\ProductsController@showProducts');
 

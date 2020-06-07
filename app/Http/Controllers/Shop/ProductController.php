@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Shop;
 
-
+use App\Models\Product;
 
 class ProductController extends BaseController
 {
-    public function showProduct()
+    public function showProduct($id)
     {
-        return view('shop.product');
+        $product = Product::find($id);
+        return view('shop.product', compact('product'));
     }
 }
