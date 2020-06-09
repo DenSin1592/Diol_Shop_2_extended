@@ -1,5 +1,7 @@
 header{
+    position: fixed;
     width: 100%;
+    z-index: 1;
 }
 .mb-4{
     margin: 0 auto;
@@ -20,6 +22,7 @@ header{
     width: 100%;
     /*min-height: calc(100vh - 113px);*/
     min-height: calc(100vh - 40px);
+    padding-top: 57px;
 }
 
 .availability{
@@ -40,9 +43,15 @@ header{
 .margin-vert-30{
     margin: 30px 0px;
 }
-.sort{
+.sort_block{
     text-align: center;
     margin-bottom: 2rem;
 }
-
-
+#products_in_cart{
+    margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+    .content-container{
+        padding-top: 121px;
+    }
+}

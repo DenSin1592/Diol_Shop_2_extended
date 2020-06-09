@@ -19,6 +19,8 @@ Route::namespace('Shop')->group(function (){
     Route::get('/products', 'ProductsController@showProducts')->name('products');
     Route::get('/product/{id}', 'ProductController@showProduct')->name('product');
 });
+Route::post('/addToCart', 'CartController@addToCart');
+Route::post('/deleteFromCart', 'CartController@deleteFromCart');
 
-//Route::fallback('Shop\ProductsController@showProducts');
+Route::fallback('Shop\ProductsController@showProducts');
 

@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class BaseRepository
  * @package App\Repository
@@ -14,9 +16,9 @@ namespace App\Repository;
 abstract class BaseRepository
 {
     /**
-     * @var Model
+     * @var  Model
      */
-    protected $model;
+    protected Model $model;
 
     /**
      * BaseRepository constructor.

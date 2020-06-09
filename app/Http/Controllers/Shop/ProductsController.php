@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Shop;
 
+use App\Http\Controllers\CartController;
 use App\Http\Requests\showProductsRequest;
 use App\Repository\ProductRepository;
 
@@ -10,8 +11,11 @@ class ProductsController extends BaseController
     /**
      * @var ProductRepository
      */
-    private $ProductRepository;
+    private ProductRepository $ProductRepository;
 
+    /**
+     * ProductsController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -26,6 +30,10 @@ class ProductsController extends BaseController
      */
     public function showProducts(showProductsRequest $request)
     {
+        $cartController = new CartController();
+        $cart = $cartController->getCart($request);
+        unset($cartController);
+
         if($request->input('column') && $request->input('orderby')){
             $products = $this
                 ->ProductRepository
@@ -37,7 +45,7 @@ class ProductsController extends BaseController
                 ->ProductRepository
                 ->getForProductList(10);
         }
-        return view('shop.products', compact('products'));
+        return view('shop.products', compact('products','cart'));
     }
 
 

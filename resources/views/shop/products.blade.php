@@ -7,7 +7,8 @@
         <p class="lead"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae error eveniet hic ipsum minus odit tempora! A, accusantium, blanditiis consectetur deserunt enim, natus neque nisi nostrum officia reiciendis veniam voluptatem!</span>
         </p>
     </div>
-    <p class="sort">Сортировать по: |
+
+    <p class="sort_block">Сортировать по: |
         <a href="{{route('products', ['column' => 'price', 'orderby' => 'ASC'])}}">возрастанию цены</a> |
         <a href="{{route('products', ['column' => 'price', 'orderby' => 'DESC'])}}">убыванию цены</a> |
         <a href="{{route('products', ['column' => 'title', 'orderby' => 'ASC'])}}">от А до Я</a> |
@@ -29,7 +30,33 @@
                             <li><h4 class="no_availability">Нет в наличии</h4></li>
                         @endif
                     </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">В корзину</button>
+                    @if(isset($cart->items[$product->id]))
+                        <button type="button" id="deleteFromCart_{{$product->id}}" class="btn btn-lg btn-block btn-outline-danger" onclick="deleteFromCart({{$product->id}})">Удалить из корзины</button>
+                        <button type="button" id="addToCart_{{$product->id}}" class="btn btn-lg btn-block btn-outline-primary" onclick="addToCart({{$product->id}})" style="display: none">Добавить в корзину</button>
+                        {{--<form action="/deleteFromCart" method="POST">
+                            @csrf
+                            <input type="text" hidden value="{{$product->id}}" name="id">
+                            <input type="submit" value="удалить" class="btn btn-primary">
+                        </form>--}}
+                    @else
+                        <button type="button" id="addToCart_{{$product->id}}" class="btn btn-lg btn-block btn-outline-primary" onclick="addToCart({{$product->id}})">Добавить в корзину</button>
+                        <button type="button" id="deleteFromCart_{{$product->id}}" class="btn btn-lg btn-block btn-outline-danger" onclick="deleteFromCart({{$product->id}})" style="display: none">Удалить из корзины</button>
+                        {{--<form action="/addToCart" method="POST">
+                            @csrf
+                            <input type="text" hidden value="{{$product->id}}" name="id">
+                            <input type="submit" value="В корзину" class="btn btn-primary">
+                        </form>--}}
+                    @endif
+                    {{--<form action="/deleteFromCart" method="POST">
+                        @csrf
+                        <input type="text" hidden value="{{$product->id}}" name="id">
+                        <input type="submit" value="удалить" class="btn btn-primary">
+                    </form>
+                    <form action="/addToCart" method="POST">
+                        @csrf
+                        <input type="text" hidden value="{{$product->id}}" name="id">
+                        <input type="submit" value="В корзину" class="btn btn-primary">
+                    </form>--}}
                 </div>
             </div>
             @endforeach
