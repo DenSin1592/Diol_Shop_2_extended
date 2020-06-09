@@ -7,7 +7,12 @@
         <p class="lead"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae error eveniet hic ipsum minus odit tempora! A, accusantium, blanditiis consectetur deserunt enim, natus neque nisi nostrum officia reiciendis veniam voluptatem!</span>
         </p>
     </div>
-    <p class="sort">Сортировать по: <a href="">цене</a> или по <a href="">названию</a>?</p>
+    <p class="sort">Сортировать по: |
+        <a href="{{route('products', ['column' => 'price', 'orderby' => 'ASC'])}}">возрастанию цены</a> |
+        <a href="{{route('products', ['column' => 'price', 'orderby' => 'DESC'])}}">убыванию цены</a> |
+        <a href="{{route('products', ['column' => 'title', 'orderby' => 'ASC'])}}">от А до Я</a> |
+        <a href="{{route('products', ['column' => 'title', 'orderby' => 'DESC'])}}">от Я до А</a>
+    | </p>
     <div class="container">
         <div class="card-deck mb-3 text-center  ">
             @foreach($products as $product)

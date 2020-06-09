@@ -20,5 +20,5 @@ Route::namespace('Shop')->group(function (){
     Route::get('/product/{id}', 'ProductController@showProduct')->name('product');
 });
 
-Route::fallback('Shop\ProductsController@showProducts');
+//Route::fallback('Shop\ProductsController@showProducts');
 

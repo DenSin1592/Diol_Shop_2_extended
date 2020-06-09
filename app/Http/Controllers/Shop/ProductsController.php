@@ -2,16 +2,43 @@
 
 namespace App\Http\Controllers\Shop;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\showProductsRequest;
+use App\Repository\ProductRepository;
 
 class ProductsController extends BaseController
 {
-    public function showProducts()
+    /**
+     * @var ProductRepository
+     */
+    private $ProductRepository;
+
+    public function __construct()
     {
-        $products = Product
-            ::orderBy('availability', 'DESC')
-            ->paginate(10);
+        parent::__construct();
+        $this->ProductRepository = new ProductRepository();
+    }
+
+    /**
+     * @param showProductsRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * Render Main List Products
+     */
+    public function showProducts(showProductsRequest $request)
+    {
+        if($request->input('column') && $request->input('orderby')){
+            $products = $this
+                ->ProductRepository
+                ->getForProductsListSortBy(
+                    $request->input('column'),
+                    $request->input('orderby'), 10);
+        }else {
+            $products = $this
+                ->ProductRepository
+                ->getForProductList(10);
+        }
         return view('shop.products', compact('products'));
     }
+
+
 }
