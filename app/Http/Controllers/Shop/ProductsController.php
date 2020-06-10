@@ -24,7 +24,7 @@ class ProductsController extends BaseController
 
     /**
      * @param showProductsRequest $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      *
      * Render Main List Products
      */
@@ -45,6 +45,8 @@ class ProductsController extends BaseController
                 ->ProductRepository
                 ->getForProductList(10);
         }
+        if(!$products)
+            return redirect('/');
         return view('shop.products', compact('products','cart'));
     }
 

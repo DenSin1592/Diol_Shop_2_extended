@@ -7,8 +7,8 @@
 <ul>
 <li>PHP 7.4</li>
 <li>MySQL 8</li>
-
 </ul>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

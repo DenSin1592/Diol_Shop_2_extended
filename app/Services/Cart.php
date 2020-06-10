@@ -32,8 +32,9 @@ class Cart
     public function addItem($product, $id)
     {
         $storedItem = $this->checkProduct($product , $id);
+        //if($storedItem['count'] > 0) return;
         $storedItem['count']++;
-        $storedItem['price'] = $storedItem['price'] * $storedItem['count'];
+        $storedItem['price'] = $product->price * $storedItem['count'];
         $this->items[$id] = $storedItem;
         $this->totalPrice = round($this->totalPrice + $product->price, 2);
         $this->totalCount++;
@@ -41,15 +42,15 @@ class Cart
     }
     public  function deleteItem($product, $id)
     {
-        if($this->totalCount == 0)
+        if($this->totalCount <= 0)
             return;
 
         $storedItem = $this->checkProduct($product , $id);
 
-        if ($storedItem['count'] == 0)
+        if ($storedItem['count'] <= 0)
             return;
         $storedItem['count']--;
-        $storedItem['price'] = $storedItem['price'] * $storedItem['count'];
+        $storedItem['price'] = $product->price * $storedItem['count'];
         $this->items[$id] = $storedItem;
         $this->totalPrice = round($this->totalPrice - $product->price, 2);
         $this->totalCount--;
@@ -57,7 +58,8 @@ class Cart
         if($storedItem['count'] == 0){
             unset($this->items[$id]);
         }
-        if($this->totalCount == 0){
+        if($this->totalCount <= 0){
+            $this->totalCount = 0;
             $this->totalPrice = 0;
             $this->items = [];
         }
